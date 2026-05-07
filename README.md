@@ -1,19 +1,61 @@
+import streamlit as st
 
-# 護理國考 AI 學習平台 PRO
+st.set_page_config(
+    page_title="護理國考 AI 學習平台",
+    page_icon="🩺",
+    layout="wide"
+)
 
-專為台灣護理國考生打造：
+st.title("🩺 護理國考 AI 學習平台 PRO")
 
-- 國考重點整理
-- 高頻考點
-- 易錯題分析
-- AI解析
-- 10題章節測驗
-- 20題混合題（可擴充）
-- 學習分析
+st.markdown("## 📚 國考重點")
 
-## 啟動
+subject = st.selectbox(
+    "選擇科目",
+    ["基醫", "基護行政", "內外", "產兒", "精神社區"]
+)
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+if subject == "內外":
+    st.subheader("COPD 慢性阻塞性肺病")
+
+    st.success("⭐ 國考超高頻")
+
+    st.write("""
+    ### 重點整理
+    - 桶狀胸
+    - 呼氣延長
+    - 低氧高碳酸血症
+    - 避免高濃度氧氣
+    - 姿勢：三腳架姿勢
+    """)
+
+    st.warning("""
+    ⚠️ 易錯觀念：
+    COPD 不可以給高濃度氧氣
+    """)
+
+    st.markdown("---")
+
+    st.subheader("📝 10題章節測驗")
+
+    q1 = st.radio(
+        "1. COPD 病人最重要護理措施？",
+        ["高濃度氧氣", "監測呼吸", "大量輸液", "平躺"],
+        key="q1"
+    )
+
+    if st.button("提交答案"):
+        if q1 == "監測呼吸":
+            st.success("✅ 正確")
+            st.info("解析：COPD 最重要是維持呼吸功能")
+        else:
+            st.error("❌ 錯誤")
+            st.info("解析：COPD 過高氧氣可能抑制呼吸")
+
+else:
+    st.info("此科目內容建置中")
+
+st.markdown("---")
+
+st.subheader("📊 學習分析")
+st.write("目前尚無資料")
